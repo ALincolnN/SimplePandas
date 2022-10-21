@@ -11,7 +11,11 @@ class DatabaseConnection:
 
     def connection(self):
         try:
-            connection = psycopg2.connect()
+            connection = psycopg2.connect(user=self.config['user'],
+                                          password=self.config['password'],
+                                          host=self.config['host'],
+                                          port=self.config['port'],
+                                          database=self.config['database'])
 
             cursor = connection.cursor()
 
@@ -33,9 +37,13 @@ class DatabaseConnection:
             except NameError:
                 return 'The connection had a failure while trying to connect to the database', NameError
 
-    def CreateUpdate(self):
+    def createupdate(self):
         try:
-            connection = psycopg2.connect()
+            connection = psycopg2.connect(user=self.config['user'],
+                                          password=self.config['password'],
+                                          host=self.config['host'],
+                                          port=self.config['port'],
+                                          database=self.config['database'])
 
             cursor = connection.cursor()
 
@@ -56,5 +64,5 @@ class DatabaseConnection:
                 return 'The connection had a failure while trying to connect to the database', NameError
 
 
-
-
+if __name__ == '__main__':
+    print('Now go back to coding, ;)')
