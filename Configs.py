@@ -1,13 +1,19 @@
 import os
 import json
+from DatabaseConnection import *
 
-os.environ['PandasDbLite'] = json.dumps({'user': 'postgres',
-                                         'password': 'gotohell',
-                                         'database': 'PandasLite',
-                                         'host': 'localhost',
-                                         'port': '5432'
-                                        })
+PandasDbInfo = {
+    'database': 'pandasdblite',
+    'user': 'pandasuser',
+    'password': 'Gotohell',
+    'host': 'localhost',
+    'port': '5432'
+    }
+
+
+os.environ['Database Object'] = json.dumps(PandasDbInfo)
 
 
 if __name__ == '__main__':
-    print(type(os.environ.get('PandasDbLite')))
+    print(type(os.environ['pandasdbLite']))
+
