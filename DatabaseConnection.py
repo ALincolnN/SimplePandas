@@ -4,18 +4,20 @@ import psycopg2
 
 class DatabaseConnection:
 
-    def __init__(self, sql_statement, database_configuration, database_version):
+    def __init__(self, sql_statement, database_configuration):
         self.sql = sql_statement
         self.config = json.loads(database_configuration)
-        self.version = database_version
 
     def connection(self):
         try:
-            connection = psycopg2.connect(user=self.config['user'],
-                                          password=self.config['password'],
-                                          host=self.config['host'],
-                                          port=self.config['port'],
-                                          database=self.config['database'])
+            connection = psycopg2.connect(
+                database=self.config['database'],
+                user=self.config['user'],
+                password=self.config['password'],
+                host=self.config['host'],
+                port=self.config['port'],
+                                          )
+            # print(connection)
 
             cursor = connection.cursor()
 
